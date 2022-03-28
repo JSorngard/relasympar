@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     95099,       2468]
-NotebookOptionsPosition[     92219,       2415]
-NotebookOutlinePosition[     92564,       2430]
-CellTagsIndexPosition[     92521,       2427]
+NotebookDataLength[    109396,       2822]
+NotebookOptionsPosition[    106192,       2764]
+NotebookOutlinePosition[    106537,       2779]
+CellTagsIndexPosition[    106494,       2776]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -2411,10 +2411,359 @@ Cell[BoxData[
  CellLabel->
   "Out[231]=",ExpressionUUID->"f96c0ed8-d9d5-4dd4-86fe-3e9fbf578838"]
 }, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Non-relativistic formula", "Section",
+ CellChangeTimes->{{3.8574604783074083`*^9, 3.8574604836286125`*^9}, 
+   3.857460555718*^9},ExpressionUUID->"3060e96d-43dd-4a0d-b603-e3ee95521454"],
+
+Cell["\<\
+This formula computes the asymmetry parameters for a non-relativistic one or \
+two photon process\
+\>", "Text",
+ CellChangeTimes->{{3.857460519001053*^9, 
+  3.857460552474*^9}},ExpressionUUID->"cf72bc2f-a5e0-4c2e-bbc7-5a6137909ed5"],
+
+Cell[BoxData[{
+ RowBox[{"Clear", "[", 
+  RowBox[{"AsymmetryParameter", ",", "M"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"AsymmetryParameter", "[", 
+    RowBox[{"n_Integer", ",", "l0_Integer", ",", "qs_List"}], "]"}], "/;", 
+   RowBox[{
+    RowBox[{"n", "\[GreaterEqual]", "0"}], "&&", 
+    RowBox[{"l0", "\[GreaterEqual]", "0"}], "&&", 
+    RowBox[{"AllTrue", "[", 
+     RowBox[{"qs", ",", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"IntegerQ", "[", "#", "]"}], "&&", 
+        RowBox[{
+         RowBox[{"Abs", "[", "#", "]"}], "\[LessEqual]", "1"}]}], "&"}]}], 
+     "]"}], "&&", 
+    RowBox[{
+     RowBox[{"Length", "[", "qs", "]"}], "\[LessEqual]", "2"}]}]}], ":=", 
+  RowBox[{"Block", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"photons", ",", "lf", ",", "q1", ",", "q2", ",", "k"}], "}"}], 
+    ",", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"photons", "=", 
+      RowBox[{"Length", "[", "qs", "]"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"Simplify", "[", 
+      RowBox[{
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{"n", ">", "0"}], ",", 
+         RowBox[{"1", "/", 
+          RowBox[{"(", 
+           RowBox[{"AsymmetryParameter", "[", 
+            RowBox[{"0", ",", "l0", ",", "qs"}], "]"}], ")"}]}], ",", "1"}], 
+        "]"}], 
+       SqrtBox[
+        FractionBox[
+         RowBox[{
+          RowBox[{"2", "n"}], "+", "1"}], 
+         RowBox[{"4", "\[Pi]"}]]], "\[IndentingNewLine]", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{"photons", "\[Equal]", "1"}], ",", "\[IndentingNewLine]", 
+         RowBox[{"(*", 
+          RowBox[{"One", " ", "photon"}], "*)"}], "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"q1", "=", 
+           RowBox[{"qs", "[", 
+            RowBox[{"[", "1", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+          RowBox[{"Sum", "[", 
+           RowBox[{
+            RowBox[{"Sum", "[", 
+             RowBox[{"(*", 
+              RowBox[{
+               RowBox[{"Print", "[", 
+                RowBox[{
+                 SuperscriptBox[
+                  RowBox[{"(", 
+                   RowBox[{"-", "1"}], ")"}], 
+                  RowBox[{"lf", "-", "m", "-", "q1"}]], 
+                 RowBox[{"ThreeJSymbol", "[", 
+                  RowBox[{
+                   RowBox[{"{", 
+                    RowBox[{"lf", ",", 
+                    RowBox[{
+                    RowBox[{"-", "m"}], "-", "q1"}]}], "}"}], ",", 
+                   RowBox[{"{", 
+                    RowBox[{"1", ",", "q1"}], "}"}], ",", 
+                   RowBox[{"{", 
+                    RowBox[{"l0", ",", "m"}], "}"}]}], "]"}], 
+                 SubscriptBox["M", "lf"], 
+                 SuperscriptBox[
+                  RowBox[{"(", 
+                   RowBox[{"-", "1"}], ")"}], 
+                  RowBox[{
+                   RowBox[{"lf", "'"}], "-", "m", "-", "q1"}]], 
+                 RowBox[{"ThreeJSymbol", "[", 
+                  RowBox[{
+                   RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"lf", "'"}], ",", 
+                    RowBox[{
+                    RowBox[{"-", "m"}], "-", "q1"}]}], "}"}], ",", 
+                   RowBox[{"{", 
+                    RowBox[{"1", ",", "q1"}], "}"}], ",", 
+                   RowBox[{"{", 
+                    RowBox[{"l0", ",", "m"}], "}"}]}], "]"}], 
+                 SuperscriptBox[
+                  RowBox[{"(", 
+                   RowBox[{"-", "1"}], ")"}], 
+                  RowBox[{"m", "+", "q1"}]], 
+                 RowBox[{"TrippleHarmonicIntegral", "[", 
+                  RowBox[{
+                   RowBox[{"{", 
+                    RowBox[{"lf", ",", 
+                    RowBox[{"m", "+", "q1"}]}], "}"}], ",", 
+                   RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"lf", "'"}], ",", 
+                    RowBox[{
+                    RowBox[{"-", "m"}], "-", "q1"}]}], "}"}], ",", 
+                   RowBox[{"{", 
+                    RowBox[{"n", ",", "0"}], "}"}]}], "]"}], 
+                 RowBox[{"Conjugate", "[", 
+                  SubscriptBox["M", 
+                   RowBox[{"lf", "'"}]], "]"}]}], "]"}], ";"}], "*)"}], 
+             RowBox[{
+              RowBox[{
+               SuperscriptBox[
+                RowBox[{"(", 
+                 RowBox[{"-", "1"}], ")"}], 
+                RowBox[{"lf", "-", "m", "-", "q1"}]], 
+               RowBox[{"ThreeJSymbol", "[", 
+                RowBox[{
+                 RowBox[{"{", 
+                  RowBox[{"lf", ",", 
+                   RowBox[{
+                    RowBox[{"-", "m"}], "-", "q1"}]}], "}"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{"1", ",", "q1"}], "}"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{"l0", ",", "m"}], "}"}]}], "]"}], 
+               RowBox[{"Piecewise", "[", 
+                RowBox[{
+                 RowBox[{"{", 
+                  RowBox[{"{", 
+                   RowBox[{
+                    SuperscriptBox[
+                    RowBox[{"Abs", "[", 
+                    SubscriptBox["M", "lf"], "]"}], "2"], ",", 
+                    RowBox[{"lf", "\[Equal]", 
+                    RowBox[{"lf", "'"}]}]}], "}"}], "}"}], ",", 
+                 RowBox[{
+                  SubscriptBox["M", "lf"], 
+                  RowBox[{"Conjugate", "[", 
+                   SubscriptBox["M", 
+                    RowBox[{"lf", "'"}]], "]"}]}]}], "]"}], 
+               RowBox[{"(*", 
+                RowBox[{
+                 SubscriptBox["M", "lf"], 
+                 RowBox[{"Conjugate", "[", 
+                  SubscriptBox["M", 
+                   RowBox[{"lf", "'"}]], "]"}]}], "*)"}], 
+               SuperscriptBox[
+                RowBox[{"(", 
+                 RowBox[{"-", "1"}], ")"}], 
+                RowBox[{
+                 RowBox[{"lf", "'"}], "-", "m", "-", "q1"}]], 
+               RowBox[{"ThreeJSymbol", "[", 
+                RowBox[{
+                 RowBox[{"{", 
+                  RowBox[{
+                   RowBox[{"lf", "'"}], ",", 
+                   RowBox[{
+                    RowBox[{"-", "m"}], "-", "q1"}]}], "}"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{"1", ",", "q1"}], "}"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{"l0", ",", "m"}], "}"}]}], "]"}], 
+               SuperscriptBox[
+                RowBox[{"(", 
+                 RowBox[{"-", "1"}], ")"}], 
+                RowBox[{"m", "+", "q1"}]], 
+               RowBox[{"TrippleHarmonicIntegral", "[", 
+                RowBox[{
+                 RowBox[{"{", 
+                  RowBox[{"lf", ",", 
+                   RowBox[{"m", "+", "q1"}]}], "}"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{
+                   RowBox[{"lf", "'"}], ",", 
+                   RowBox[{
+                    RowBox[{"-", "m"}], "-", "q1"}]}], "}"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{"n", ",", "0"}], "}"}]}], "]"}]}], ",", 
+              RowBox[{"{", 
+               RowBox[{"lf", ",", 
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"l0", "-", "1"}], ",", 
+                  RowBox[{"l0", "+", "1"}]}], "}"}]}], "}"}], ",", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"lf", "'"}], ",", 
+                RowBox[{"l0", "-", "1"}], ",", 
+                RowBox[{"l0", "+", "1"}]}], "}"}]}], "]"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"m", ",", 
+              RowBox[{"-", "l0"}], ",", "l0"}], "}"}]}], "]"}]}], 
+         "\[IndentingNewLine]", ",", "\[IndentingNewLine]", 
+         RowBox[{"(*", 
+          RowBox[{
+           RowBox[{"Two", " ", "photons"}], ",", " ", "coupled"}], "*)"}], 
+         "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"q1", "=", 
+           RowBox[{"qs", "[", 
+            RowBox[{"[", "1", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+          RowBox[{"q2", "=", 
+           RowBox[{"qs", "[", 
+            RowBox[{"[", "2", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+          RowBox[{"Sum", "[", 
+           RowBox[{
+            RowBox[{"Sum", "[", 
+             RowBox[{
+              RowBox[{
+               SuperscriptBox[
+                RowBox[{"(", 
+                 RowBox[{"-", "1"}], ")"}], 
+                RowBox[{"lf", "+", "m", "+", "q1", "+", "q2", "+", 
+                 SuperscriptBox["lf", "\[Prime]",
+                  MultilineFunction->None]}]], 
+               RowBox[{"ThreeJSymbol", "[", 
+                RowBox[{
+                 RowBox[{"{", 
+                  RowBox[{"lf", ",", 
+                   RowBox[{
+                    RowBox[{"-", "m"}], "-", "q1", "-", "q2"}]}], "}"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{"k", ",", 
+                   RowBox[{"q1", "+", "q2"}]}], "}"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{"l0", ",", "m"}], "}"}]}], "]"}], 
+               SqrtBox[
+                RowBox[{
+                 RowBox[{"2", "k"}], "+", "1"}]], 
+               RowBox[{"ThreeJSymbol", "[", 
+                RowBox[{
+                 RowBox[{"{", 
+                  RowBox[{"1", ",", "q2"}], "}"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{"1", ",", "q1"}], "}"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{"k", ",", 
+                   RowBox[{"q1", "+", "q2"}]}], "}"}]}], "]"}], 
+               RowBox[{"Piecewise", "[", 
+                RowBox[{
+                 RowBox[{"{", 
+                  RowBox[{"{", 
+                   RowBox[{
+                    SuperscriptBox[
+                    RowBox[{"Abs", "[", 
+                    SubscriptBox["M", "lf"], "]"}], "2"], ",", 
+                    RowBox[{"lf", "\[Equal]", 
+                    RowBox[{"lf", "'"}]}]}], "}"}], "}"}], ",", 
+                 RowBox[{
+                  SubscriptBox["M", "lf"], 
+                  RowBox[{"Conjugate", "[", 
+                   SubscriptBox["M", 
+                    RowBox[{"lf", "'"}]], "]"}]}]}], "]"}], 
+               RowBox[{"(*", 
+                RowBox[{
+                 SubscriptBox["M", "lf"], 
+                 RowBox[{"Conjugate", "[", 
+                  SubscriptBox["M", 
+                   RowBox[{"lf", "'"}]], "]"}]}], "*)"}], 
+               RowBox[{"ThreeJSymbol", "[", 
+                RowBox[{
+                 RowBox[{"{", 
+                  RowBox[{
+                   RowBox[{"lf", "'"}], ",", 
+                   RowBox[{
+                    RowBox[{"-", "m"}], "-", "q1", "-", "q2"}]}], "}"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{
+                   RowBox[{"k", "'"}], ",", 
+                   RowBox[{"q1", "+", "q2"}]}], "}"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{"l0", ",", "m"}], "}"}]}], "]"}], 
+               SqrtBox[
+                RowBox[{
+                 RowBox[{"2", 
+                  RowBox[{"k", "'"}]}], "+", "1"}]], 
+               RowBox[{"ThreeJSymbol", "[", 
+                RowBox[{
+                 RowBox[{"{", 
+                  RowBox[{"1", ",", "q2"}], "}"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{"1", ",", "q1"}], "}"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{
+                   RowBox[{"k", "'"}], ",", 
+                   RowBox[{"q1", "+", "q2"}]}], "}"}]}], "]"}], 
+               RowBox[{"TrippleHarmonicIntegral", "[", 
+                RowBox[{
+                 RowBox[{"{", 
+                  RowBox[{"lf", ",", 
+                   RowBox[{"m", "+", "q1", "+", "q2"}]}], "}"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{
+                   RowBox[{"lf", "'"}], ",", 
+                   RowBox[{
+                    RowBox[{"-", "m"}], "-", "q1", "-", "q2"}]}], "}"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{"n", ",", "0"}], "}"}]}], "]"}]}], ",", 
+              RowBox[{"{", 
+               RowBox[{"lf", ",", 
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"l0", "-", "2"}], ",", "l0", ",", 
+                  RowBox[{"l0", "+", "2"}]}], "}"}]}], "}"}], ",", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"lf", "'"}], ",", 
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"l0", "-", "2"}], ",", "l0", ",", 
+                  RowBox[{"l0", "+", "2"}]}], "}"}]}], "}"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"k", ",", "0", ",", "2"}], "}"}], ",", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"k", "'"}], ",", "0", ",", "2"}], "}"}]}], "]"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"m", ",", 
+              RowBox[{"-", "l0"}], ",", "l0"}], "}"}]}], "]"}]}]}], 
+        "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", "]"}]}]}], 
+   "\[IndentingNewLine]", "]"}]}]}], "Input",
+ CellChangeTimes->CompressedData["
+1:eJwdxUsogwEAB/DPUBZlbZSD5l1sahMKl28aB299CrGs2NJCC5FEsSLlMVNT
+9jKklgMHB3OYtGJp82jUUKS8vmY5rGibxPff4dcvq1tNKVkEQWQwMKGk4xYO
+A5UjhcWp+Ji05mPDuVOBx4MsFa7vGtbhQu+EEStefq1Yo6NtePIzYwfbNeun
+mDsYecFkNv8Lz62FiEXmxpinOMxpUMXjOyrMxk69Ng8nnlQIsCSlQIH9R8YF
+HBt06LFIsG9eYr7pbLNi+2TiHn7kcaPbPnoP8FTw3R49ue8M5wgyPbjV77zC
+frbBh8u2OGFMlnf84EbX5R9OuiUJLbNMHRIvM0dyBVKcLpHW4KtXog4Li+6b
+MHssh8Ke6h4zlg+lWfCqa34bW/ofdjBLxHvGss/QGy6hRG4d867cf46nBnxe
+bLpou8YJb/0+PO2mo1f1/tGYaEn+xrWlAe4Ks1TbzsOmvVHNjCNQOS/W6/Cs
+kL+BN+ubN/E/6EwTiw==
+  "],
+ CellLabel->
+  "In[298]:=",ExpressionUUID->"b4f86bd9-8ab6-4646-b512-03abc1eb8506"]
 }, Open  ]]
 },
-WindowSize->{1664, 967},
-WindowMargins->{{115, Automatic}, {848, Automatic}},
+WindowSize->{1680, 967},
+WindowMargins->{{115, Automatic}, {856, Automatic}},
 FrontEndVersion->"12.0 for Microsoft Windows (64-bit) (April 8, 2019)",
 StyleDefinitions->"Default.nb"
 ]
@@ -2431,11 +2780,11 @@ CellTagsIndex->{}
 Notebook[{
 Cell[CellGroupData[{
 Cell[580, 22, 155, 3, 67, "Section",ExpressionUUID->"619a4e76-f68e-40da-a0f6-f3c8486f3cc3"],
-Cell[738, 27, 4615, 130, 215, "Text",ExpressionUUID->"00ccf6c8-cf0c-4137-b148-fef25c451da8"],
+Cell[738, 27, 4615, 130, 218, "Text",ExpressionUUID->"00ccf6c8-cf0c-4137-b148-fef25c451da8"],
 Cell[5356, 159, 3265, 97, 172, "Text",ExpressionUUID->"74620cda-7603-47ed-a416-9b8b15e1c3d1"],
-Cell[8624, 258, 7876, 236, 234, "Text",ExpressionUUID->"2973d668-cee1-4625-8528-230b3fcc7229"],
-Cell[16503, 496, 2977, 89, 123, "Text",ExpressionUUID->"36b43be4-4739-4ff4-a46b-db5c0409f318"],
-Cell[19483, 587, 14209, 393, 263, "Text",ExpressionUUID->"5ea61c3f-ecbc-43fc-916b-7b734d6fdbb0"]
+Cell[8624, 258, 7876, 236, 235, "Text",ExpressionUUID->"2973d668-cee1-4625-8528-230b3fcc7229"],
+Cell[16503, 496, 2977, 89, 125, "Text",ExpressionUUID->"36b43be4-4739-4ff4-a46b-db5c0409f318"],
+Cell[19483, 587, 14209, 393, 266, "Text",ExpressionUUID->"5ea61c3f-ecbc-43fc-916b-7b734d6fdbb0"]
 }, Open  ]],
 Cell[CellGroupData[{
 Cell[33729, 985, 221, 4, 67, "Section",ExpressionUUID->"57efb09f-efdb-4f37-b484-ad434e3bde34"],
@@ -2469,6 +2818,11 @@ Cell[CellGroupData[{
 Cell[90061, 2343, 481, 13, 32, "Input",ExpressionUUID->"c7142a17-d495-402c-8e41-d854364a8673"],
 Cell[90545, 2358, 1646, 53, 49, "Output",ExpressionUUID->"f96c0ed8-d9d5-4dd4-86fe-3e9fbf578838"]
 }, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[92240, 2417, 191, 2, 67, "Section",ExpressionUUID->"3060e96d-43dd-4a0d-b603-e3ee95521454"],
+Cell[92434, 2421, 242, 5, 34, "Text",ExpressionUUID->"cf72bc2f-a5e0-4c2e-bbc7-5a6137909ed5"],
+Cell[92679, 2428, 13497, 333, 510, "Input",ExpressionUUID->"b4f86bd9-8ab6-4646-b512-03abc1eb8506"]
 }, Open  ]]
 }
 ]
